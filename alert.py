@@ -24,8 +24,8 @@ driver = webdriver.Chrome(service=service, options=chrome_options)
 
 def sendTwilioMessage(message):
     account_sid = 'ACf349f16d4c1d42453b115c4f78804831'
-    auth_token = '76c264e0e9dba29a1529f56d3474f295 test'
-    # auth_token = '76c264e0e9dba29a1529f56d3474f295'
+    auth_token = 'b522abf69803a697dc4b8ba5038f5587 test'
+    # auth_token = 'b522abf69803a697dc4b8ba5038f5587'
     fromNumber= '+16363227054'
     toNumber= '+918714812137'
     client = Client(account_sid, auth_token)
@@ -66,9 +66,11 @@ def scriptFromMainPage():
         """
         result=driver.execute_script(script)
         print (result)
-        if result:
-            message='TEST message : Playoff 2 tickets available!'
-            sendTwilioMessage(message)
+        if result!=True:
+            message='Playoff 2 tickets available!'
+            # sendTwilioMessage(message)
+            with open("bookings_open", 'x') as f:
+                f.write(message)
         input("Press Enter to close the browser...")
     except Exception as e:
         print(f"An error occurred: {e}")
