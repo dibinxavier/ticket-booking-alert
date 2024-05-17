@@ -1,1 +1,1 @@
-# ipl-ticket-booking-alert
+# ticket-booking-alert
