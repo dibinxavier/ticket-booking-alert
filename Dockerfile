@@ -40,7 +40,7 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 # Download and install ChromeDriver from the provided URL
 RUN wget -N https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.60/linux64/chromedriver-linux64.zip -P /tmp && \
     unzip /tmp/chromedriver-linux64.zip -d /usr/local/bin && \
-    chmod +x /usr/local/bin/chromedriver && \  # Add this line to set executable permissions
+    chmod +x /usr/local/bin/chromedriver && \
     rm /tmp/chromedriver-linux64.zip
 
 # Copy your Python script into the container
