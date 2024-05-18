@@ -9,7 +9,8 @@ from twilio.rest import Client
 
 # Set the path to the ChromeDriver executable
 # chrome_driver_path = '/home/dibin/dibin/learning/chrome-drivers/chromedriver-linux64/chromedriver' 
-chrome_driver_path = 'https://github.com/dibinxavier/ticket-booking-alert/blob/main/chromedriver' 
+# chrome_driver_path = 'https://github.com/dibinxavier/ticket-booking-alert/blob/main/chromedriver' 
+chrome_driver_path = './chromedriver' 
 
 # Set up Chrome options
 chrome_options = Options()
