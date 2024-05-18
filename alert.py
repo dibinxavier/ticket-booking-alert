@@ -1,27 +1,51 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
-from twilio.rest import Client
+import os
 
-# Set the path to the ChromeDriver executable
-# chrome_driver_path = '/home/dibin/dibin/learning/chrome-drivers/chromedriver-linux64/chromedriver' 
-# chrome_driver_path = 'https://github.com/dibinxavier/ticket-booking-alert/blob/main/chromedriver' 
-chrome_driver_path = './chromedriver' 
-
-# Set up Chrome options
+# Set Chrome options
 chrome_options = Options()
-chrome_options.add_argument('--headless')  # Run Chrome in headless mode if needed
-# chrome_options.add_argument('--disable-gpu')  # Disable GPU acceleration if needed
-chrome_options.add_argument('--no-sandbox')  # Bypass OS security model, useful for CI environments
-chrome_options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN", "/app/.apt/usr/bin/google-chrome")
 
-# Create a new instance of the Chrome driver
-service = Service(chrome_driver_path)
+# Path to the ChromeDriver binary
+chrome_driver_path = os.environ.get("CHROMEDRIVER_PATH", "/app/.chromedriver/bin/chromedriver")
+
+# Ensure the path to the ChromeDriver binary is correct
+service = ChromeService(executable_path=chrome_driver_path)
+
+# Initialize the WebDriver
 driver = webdriver.Chrome(service=service, options=chrome_options)
+
+
+
+# from selenium import webdriver
+# from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# import time
+# from twilio.rest import Client
+
+# # Set the path to the ChromeDriver executable
+# # chrome_driver_path = '/home/dibin/dibin/learning/chrome-drivers/chromedriver-linux64/chromedriver' 
+# # chrome_driver_path = 'https://github.com/dibinxavier/ticket-booking-alert/blob/main/chromedriver' 
+# chrome_driver_path = './chromedriver' 
+
+# # Set up Chrome options
+# chrome_options = Options()
+# chrome_options.add_argument('--headless')  # Run Chrome in headless mode if needed
+# # chrome_options.add_argument('--disable-gpu')  # Disable GPU acceleration if needed
+# chrome_options.add_argument('--no-sandbox')  # Bypass OS security model, useful for CI environments
+# chrome_options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
+
+# # Create a new instance of the Chrome driver
+# service = Service(chrome_driver_path)
+# driver = webdriver.Chrome(service=service, options=chrome_options)
 
 
 def sendTwilioMessage(message):
