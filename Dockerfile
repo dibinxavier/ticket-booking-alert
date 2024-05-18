@@ -1,7 +1,7 @@
 # Use a base image with Python
 FROM python:3.9-slim
 
-# Install necessary dependencies including curl
+# Install necessary dependencies
 RUN apt-get update && apt-get install -y \
     wget \
     unzip \
@@ -37,12 +37,11 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
     dpkg -i /tmp/google-chrome-stable_current_amd64.deb && \
     rm /tmp/google-chrome-stable_current_amd64.deb
 
-# Install ChromeDriver
-RUN wget -N https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.60/linux64/chromedriver-linux64.zip -P /tmp && \
-    unzip /tmp/chromedriver_linux64.zip -d /tmp && \
-    mv /tmp/chromedriver /usr/local/bin/chromedriver && \
-    chmod +x /usr/local/bin/chromedriver && \
-    rm /tmp/chromedriver_linux64.zip
+# Download and install ChromeDriver from the provided URL
+RUN CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE) && \
+    wget -N https://storage.googleapis.com/chrome-for-testing-public/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip -P /tmp && \
+    unzip /tmp/chromedriver-linux64.zip -d /usr/local/bin && \
+    rm /tmp/chromedriver-linux64.zip
 
 # Copy your Python script into the container
 COPY alert.py /app/
