@@ -7,6 +7,27 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libxkbcommon0 \
     libxrandr2 \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libatspi2.0-0 \
+    libcairo2 \
+    libcups2 \
+    libcurl4 \
+    libdbus-1-3 \
+    libdrm2 \
+    libgbm1 \
+    libglib2.0-0 \
+    libgtk-3-0 \
+    libnspr4 \
+    libnss3 \
+    libpango-1.0-0 \
+    libu2f-udev \
+    libvulkan1 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    fonts-liberation \
     xdg-utils \
     --no-install-recommends
 
@@ -15,7 +36,7 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
     dpkg -i /tmp/google-chrome-stable_current_amd64.deb && \
     rm /tmp/google-chrome-stable_current_amd64.deb
 
-# Install ChromeDriver
+# Install ChromeDriver (assuming ChromeDriver doesn't have additional dependencies)
 RUN CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE) && \
     wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P /tmp && \
     unzip /tmp/chromedriver_linux64.zip -d /tmp && \
