@@ -1,7 +1,7 @@
 #!/bin/bash
 
-heroku buildpacks:add heroku/google-chrome
-heroku buildpacks:add heroku/chromedriver
+# heroku buildpacks:add heroku/google-chrome
+# heroku buildpacks:add heroku/chromedriver
 
 # Add any setup commands here
 echo "Running setup commands..."
