@@ -9,16 +9,24 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN", "/app/.apt/usr/bin/google-chrome")
+# chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN", "/app/.apt/usr/bin/google-chrome")
+
+# # Path to the ChromeDriver binary
+# chrome_driver_path = os.environ.get("CHROMEDRIVER_PATH", "/app/.chromedriver/bin/chromedriver")
+
+
+chrome_options.binary_location = "/usr/bin/google-chrome"
 
 # Path to the ChromeDriver binary
-chrome_driver_path = os.environ.get("CHROMEDRIVER_PATH", "/app/.chromedriver/bin/chromedriver")
+chrome_driver_path = "/usr/local/bin/chromedriver"
+
 
 # Ensure the path to the ChromeDriver binary is correct
 service = ChromeService(executable_path=chrome_driver_path)
 
 # Initialize the WebDriver
 driver = webdriver.Chrome(service=service, options=chrome_options)
+
 
 
 
