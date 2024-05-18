@@ -18,7 +18,7 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.binary_location = "/usr/bin/google-chrome"
 
 # Path to the ChromeDriver binary
-chrome_driver_path = "/usr/local/bin/chromedriver"
+chrome_driver_path = "/usr/local/bin/chromedriver-linux64/chromedriver"
 
 
 # Ensure the path to the ChromeDriver binary is correct
