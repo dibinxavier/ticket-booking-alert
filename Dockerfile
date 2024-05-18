@@ -1,10 +1,11 @@
 # Use a base image with Python
 FROM python:3.9-slim
 
-# Install necessary dependencies
+# Install necessary dependencies including curl
 RUN apt-get update && apt-get install -y \
     wget \
     unzip \
+    curl \
     libxkbcommon0 \
     libxrandr2 \
     libasound2 \
@@ -36,7 +37,7 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
     dpkg -i /tmp/google-chrome-stable_current_amd64.deb && \
     rm /tmp/google-chrome-stable_current_amd64.deb
 
-# Install ChromeDriver (assuming ChromeDriver doesn't have additional dependencies)
+# Install ChromeDriver
 RUN CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE) && \
     wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P /tmp && \
     unzip /tmp/chromedriver_linux64.zip -d /tmp && \
